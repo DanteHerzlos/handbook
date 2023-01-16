@@ -23,7 +23,7 @@ const Detail = () => {
 
   return (
     <div className={cl.container}>
-      <DetailToolbar/>
+      <DetailToolbar id={id}/>
       <Box title="Владельцы">
         <ol>
           {data.owners &&

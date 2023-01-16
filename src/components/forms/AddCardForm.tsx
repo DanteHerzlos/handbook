@@ -3,24 +3,48 @@ import cl from "../../styles/components/forms/AddCardForm.module.css"
 import Button from "../../components/UI/Button"
 import Modal from "../../components/UI/Modal"
 import TextInput from "../../components/UI/TextInput"
+import { ICard } from "../../types/ICard"
 
 const AddCardForm = () => {
   const [isModal, setIsModal] = useState<boolean>(false)
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const form = e.currentTarget
+    const card = {
+      owners: form.owners.value,
+      address: form.address.value,
+      basis_partnership: form.basis_partnership.value,
+      land_plot_index: form.land_plot_index.value,
+      house_index: form.house_index.value,
+      land_area: form.land_area.value,
+      house_area: form.house_area.value,
+      email: form.email.value,
+      postal_address: form.postal_address.value,
+      tel_numbers: form.tel_numbers.value,
+    } as ICard
 
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const res = await (window as any).electronAPI.addCard(card)
+      if (res.changes === 0) {
+        throw new Error("Обьект не добавлен!")
+      }
+      setIsModal(false)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
     <>
-      <Button className={cl.btn} onClick={() => setIsModal(true)}>Add</Button>
+      <Button className={cl.btn} onClick={() => setIsModal(true)}>
+        Add
+      </Button>
       <Modal onClose={() => setIsModal(false)} open={isModal}>
         <form onSubmit={(e) => onSubmit(e)} className={cl.form}>
           <h2>Добавить</h2>
-          <TextInput id="owner_1" name="owner_1" placeholder="Владелец" />
-          <TextInput id="owner_2" name="owner_2" placeholder="Владелец" />
-          <TextInput id="owner_3" name="owner_3" placeholder="Владелец" />
+          <TextInput id="owners" name="owners" placeholder="Владелецы" />
           <TextInput id="address" name="address" placeholder="Адрес" />
           <TextInput
             id="basis_partnership"

@@ -1,0 +1,10 @@
+.toolbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.toolbar__right {
+  display: flex;
+  gap: .5rem;
+}

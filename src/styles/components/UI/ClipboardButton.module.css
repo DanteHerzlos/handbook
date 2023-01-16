@@ -1,0 +1,10 @@
+.btn {
+  margin-bottom: -4px;
+  fill: #ccc;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  fill: #000;
+}

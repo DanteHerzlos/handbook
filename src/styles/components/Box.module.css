@@ -1,0 +1,23 @@
+.container {
+  position: relative;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  padding: .5rem;
+  padding-top: 0.75rem;
+  margin-top: .5rem;
+}
+
+.title {
+  position: absolute;
+  top: -0.5rem;
+  left: .5rem;
+  font-size: 0.75rem;
+  color: #666;
+  background-color: #fff;
+  padding: 0 .25rem;
+}
+
+.container ol {
+  padding-left: 1rem;
+}
